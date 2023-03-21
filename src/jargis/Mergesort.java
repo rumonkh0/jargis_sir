@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Mergesort {
 
     void merge(int arr[], int left, int mid, int right) {
-        
+
         //Printing code
         System.out.println("merging array: ");
         System.out.print("[ ");
@@ -21,7 +21,7 @@ public class Mergesort {
             System.out.print(arr[i] + " ");
         }
         System.out.print("] to ");
-        
+
         //Main code
         int n1 = mid - left + 1;
         int n2 = right - mid;
@@ -73,14 +73,14 @@ public class Mergesort {
     void mergesort(int arr[], int left, int right) {
         if (left < right) {
             int mid = (left + right) / 2;
-            
+
             //Printing code
             System.out.println("dividing array: ");
-             System.out.print("[ ");
+            System.out.print("[ ");
             for (int i = left; i <= right; i++) {
                 System.out.print(arr[i] + " ");
             }
-            System.out.print("] to ");
+            System.out.print("] to ------> ");
             System.out.print("[ ");
             for (int i = left; i <= mid; i++) {
                 System.out.print(arr[i] + " ");
@@ -90,7 +90,7 @@ public class Mergesort {
                 System.out.print(arr[i] + " ");
             }
             System.out.print("]\n");
-            
+
             //Main code
             mergesort(arr, left, mid);
             mergesort(arr, mid + 1, right);
@@ -103,8 +103,12 @@ public class Mergesort {
         Scanner obj = new Scanner(System.in);
         n = obj.nextInt();
         int arr[] = new int[n];
+//        for (int i = 0; i < n; i++) {
+//            arr[i] = obj.nextInt();
+//        }
+
         for (int i = 0; i < n; i++) {
-            arr[i] = obj.nextInt();
+            arr[i] = (int) (Math.random() * 100);
         }
 
         Mergesort ob = new Mergesort();

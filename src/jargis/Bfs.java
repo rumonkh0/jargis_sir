@@ -20,21 +20,21 @@ class BFS {
 //        Scanner sc = new Scanner(System.in);
 
         try {
-//            File myObj = new File("bfs.txt");
-            File myObj = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "bfs.txt");
-            try (Scanner fileManager = new Scanner(myObj)) {
-                node = fileManager.nextInt();
-                edge = fileManager.nextInt();
+//            File bfsfile = new File("bfs.txt");
+            File bfsfile = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "bfs.txt");
+            try (Scanner bfs_scanner = new Scanner(bfsfile)) {
+                node = bfs_scanner.nextInt();
+                edge = bfs_scanner.nextInt();
 
                 graph = new int[node][node];
                 for (int i = 0; i < edge; i++) {
-                    int edge_a = fileManager.nextInt();
-                    int edge_b = fileManager.nextInt();
+                    int edge_a = bfs_scanner.nextInt();
+                    int edge_b = bfs_scanner.nextInt();
                     graph[edge_a][edge_b] = 1;
                     graph[edge_b][edge_a] = 1;
                 }
-                s = fileManager.nextInt();
-                fileManager.close();
+                s = bfs_scanner.nextInt();
+                bfs_scanner.close();
             }
         } catch (FileNotFoundException e) {
             System.out.println("\"bfs.txt\" file not found in your Desktop forder");
@@ -87,16 +87,16 @@ class BFS {
         }
         System.out.println("");
         for (int i = 0; i < node; i++) {
-            System.out.println("parent of " + i + " is: " + (par[i] == -1 ? "this is source" : par[i]));
+            System.out.println("parent of " + i + " : " + (par[i] == -1 ? "this is source" : par[i]));
         }
     }
 
 }
 
 public class Bfs {
-
-    public static void main(String[] args) {
+    public static void main(String args[]) {
         // TODO code application logic here
+        System.out.println("hellodddd");
         new BFS();
     }
 

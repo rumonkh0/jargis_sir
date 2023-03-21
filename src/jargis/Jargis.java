@@ -9,10 +9,10 @@ package jargis;
  * @author rumon
  */
 public class Jargis {
-    
+
     public static void main(String[] args) {
-        // TODO code application logic here
-        System.out.println("hello");
+//        new BFS();
+          new Quicksort();
     }
-    
+
 }
