@@ -1,4 +1,4 @@
-package jargis;
+package algo_lab_jargis_sir;
 
 import java.io.File;
 import java.io.FileNotFoundException;
