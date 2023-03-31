@@ -13,9 +13,9 @@ import java.util.Scanner;
  * @author rumon
  */
 public final class DFS_path {
-    
+
     int node, edge, graph[][], color[], prev[], d[], f[], time, start, end;
-    
+
     DFS_path() {
         try {
 //            File bfsfile = new File("bfs.txt");
@@ -23,7 +23,7 @@ public final class DFS_path {
             try (Scanner bfs_scanner = new Scanner(bfsfile)) {
                 node = bfs_scanner.nextInt();
                 edge = bfs_scanner.nextInt();
-                
+
                 graph = new int[node][node];
                 for (int i = 0; i < edge; i++) {
                     int edge_a = bfs_scanner.nextInt();
@@ -39,12 +39,12 @@ public final class DFS_path {
             System.out.println("\"bfs.txt\" file not found in your Desktop forder");
             System.exit(0);
         }
-        
+
         color = new int[node];
         prev = new int[node];
         d = new int[node];
         f = new int[node];
-        
+
         for (int i = 0; i < node; i++) // initialize the visited and level array
         {
             color[i] = 0; // white
@@ -53,6 +53,7 @@ public final class DFS_path {
             d[i] = 999999999;
         }
         time = 0;
+        DFS_travarse(start);
         for (int i = 0; i < node; i++) {
             if (color[i] == 0) {
                 DFS_travarse(i);
@@ -61,7 +62,7 @@ public final class DFS_path {
         print_path(start, end);
         System.out.println("");
     }
-    
+
     void DFS_travarse(int u) {
         color[u] = 1;
         time++;
@@ -77,7 +78,7 @@ public final class DFS_path {
         time++;
         f[u] = time;
     }
-    
+
     private void print_path(int s, int d) {
         if (d == s) {
             System.out.print(s);
@@ -85,8 +86,12 @@ public final class DFS_path {
         } else if (prev[d] == -1) {
             System.out.println("path not possible");
             System.exit(0);
+        } else {
+            print_path(s, prev[d]);
+            System.out.print("-->" + d);
         }
-        print_path(s, prev[d]);
-        System.out.print("-->" + d);
+    }
+    public static void main(String[] args) {
+        new DFS_path();
     }
 }

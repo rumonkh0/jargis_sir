@@ -13,7 +13,7 @@ public class Jargis {
     public static void main(String[] args) {
 //        new BFS();
 //          new Quicksort();
-        new DFS();
+        new DFS_path();
     }
 
 }
