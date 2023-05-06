@@ -4,11 +4,6 @@
  */
 package algo_lab_jargis_sir;
 
-import static algo_lab_jargis_sir.Prims.edge;
-import static algo_lab_jargis_sir.Prims.mstset;
-import static algo_lab_jargis_sir.Prims.node;
-import static algo_lab_jargis_sir.Prims.root;
-import static algo_lab_jargis_sir.Prims.tree;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -19,7 +14,7 @@ import java.util.Scanner;
  */
 public class SecondPrims {
     static int node, edge, graph[][], key[], parent[], tree[], mstset[], root;
-    Prims() {
+    SecondPrims() {
         try {
 //          File bfsfile = new File("/home/student_user/Desktop/prims.txt");
             File bfsfile = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "prims.txt");
