@@ -13,7 +13,9 @@ import java.util.Scanner;
  * @author rumon
  */
 public class SecondPrims {
-    static int node, edge, graph[][], key[], parent[], tree[], mstset[], root;
+
+    static int node, edge, graph[][], sKey[], key[], parent[], secondParent[], printParent[], mstset[], root, total = Integer.MAX_VALUE, cTotal = 0;
+
     SecondPrims() {
         try {
 //          File bfsfile = new File("/home/student_user/Desktop/prims.txt");
@@ -40,13 +42,14 @@ public class SecondPrims {
 
         key = new int[node];
         parent = new int[node];
-        tree = new int[node];
         mstset = new int[node];
+        secondParent = new int[node];
+        printParent = new int[node];
+        sKey = new int[node];
 
         for (int i = 0; i < node; i++) {
             key[i] = Integer.MAX_VALUE;
             parent[i] = -1;
-            tree[i] = 0;
             mstset[i] = 0;
         }
         key[root] = 0;
@@ -61,7 +64,47 @@ public class SecondPrims {
                 }
             }
         }
+
+//      calculate second mst
+        for (int omit = 1; omit < node; omit++) {
+            int flag = 0;
+            cTotal = 0;
+            for (int i = 0; i < node; i++) {
+                sKey[i] = Integer.MAX_VALUE;
+                secondParent[i] = -1;
+                mstset[i] = 0;
+            }
+            sKey[root] = 0;
+            for (int count = 0; count < node - 1; count++) {
+                int u = minKey(sKey, mstset);
+                if (u == -1) {
+                    flag = 1;
+                    break;
+                }
+                mstset[u] = 1;
+                for (int v = 0; v < node; v++) {
+                    if ((v == omit && u == parent[omit]) || (v == parent[omit] && u == omit)) {
+                        continue;
+                    }
+                    if (graph[u][v] != 0 && mstset[v] == 0 && graph[u][v] < sKey[v]) {
+                        secondParent[v] = u;
+                        sKey[v] = graph[u][v];
+                        cTotal += graph[u][v];
+                    }
+                }
+            }
+            if (flag ==1) {
+                continue;
+            }
+            if (cTotal < total) {
+                total = cTotal;
+                System.arraycopy(secondParent, 1, printParent, 1, node - 1);
+            }
+        }
+
         printMST(parent, graph);
+        System.out.println("\n\n");
+        printMST(printParent, graph);
     }
 
     private int minKey(int key[], int mstSet[]) {
