@@ -93,10 +93,7 @@ public class SecondPrims {
                     }
                 }
             }
-            if (flag ==1) {
-                continue;
-            }
-            if (cTotal < total) {
+            if (cTotal < total && flag == 0) {
                 total = cTotal;
                 System.arraycopy(secondParent, 1, printParent, 1, node - 1);
             }
