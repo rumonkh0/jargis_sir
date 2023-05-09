@@ -58,11 +58,11 @@ public class Bfsadj {
             color[u] = "black";
         }
 
-        if (flag) {
-            System.out.println("YES");
-        } else {
-            System.out.println("NO");
-        }
+//        if (flag) {
+//            System.out.println("YES");
+//        } else {
+//            System.out.println("NO");
+//        }
 
     }
 

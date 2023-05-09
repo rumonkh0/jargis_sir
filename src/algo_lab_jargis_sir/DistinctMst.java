@@ -18,7 +18,7 @@ import java.util.Scanner;
  */
 public class DistinctMst {
 
-    static int node, edge, graph[][], sKey[], key[], parent[], secondParent[], printParent[], mstset[], root, total = 0, cTotal = 0, count=1;
+    static int node, edge, graph[][], sKey[], key[], parent[], secondParent[], printParent[], mstset[], root, total = 0, cTotal = 0, max = Integer.MAX_VALUE;
 
     DistinctMst() {
         dateWrite();
@@ -61,17 +61,22 @@ public class DistinctMst {
 
         for (int count = 0; count < node - 1; count++) {
             int u = minKey(key, mstset);
+            total += key[u];
             mstset[u] = 1;
             for (int v = 0; v < node; v++) {
                 if (graph[u][v] != 0 && mstset[v] == 0 && graph[u][v] < key[v]) {
                     parent[v] = u;
                     key[v] = graph[u][v];
-                    total += graph[u][v];
+
                 }
             }
         }
+        int g = minKey(key, mstset);
+        total += key[g];
 
-//      calculate distinct mst
+        System.out.println(total);
+
+//      calculate second mst
         for (int omit = 1; omit < node; omit++) {
             int flag = 0;
             cTotal = 0;
@@ -87,6 +92,7 @@ public class DistinctMst {
                     flag = 1;
                     break;
                 }
+                cTotal += sKey[u];
                 mstset[u] = 1;
                 for (int v = 0; v < node; v++) {
                     if ((v == omit && u == parent[omit]) || (v == parent[omit] && u == omit)) {
@@ -98,20 +104,24 @@ public class DistinctMst {
                     }
                 }
             }
-            for(int i=0; i<node; i++){
-                cTotal+=sKey[i];
+            if (flag == 0) {
+                g = minKey(sKey, mstset);
+                cTotal += sKey[g];
             }
-            System.out.println(cTotal+" -- ");
-            if (cTotal == total && flag == 0) {
-                System.out.println("hi"+count);
-                count++;
+            System.out.println(cTotal);
+            if (cTotal <= max && flag == 0) {
+                System.out.println("found" + cTotal);
+                max = cTotal;
+                System.arraycopy(secondParent, 1, printParent, 1, node - 1);
             }
         }
-        System.out.println(count);
+
         printMST(parent, graph);
+        System.out.println("\n\n");
+        printMST(printParent, graph);
     }
 
-    private int minKey(int key[], int mstSet[]) {
+    static int minKey(int key[], int mstSet[]) {
         // Initialize min value
         int min = Integer.MAX_VALUE, min_index = -1;
 
@@ -124,7 +134,7 @@ public class DistinctMst {
         return min_index;
     }
 
-    void printMST(int parent[], int graph[][]) {
+    static void printMST(int parent[], int graph[][]) {
 //        File result = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "primsans.txt");
 //        result.delete();
         try {
@@ -146,14 +156,13 @@ public class DistinctMst {
 
     }
 
-    void dateWrite() {
+    static void dateWrite() {
         try {
             try (FileWriter myWriter = new FileWriter(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "primsans.txt", true)) {
                 LocalDateTime dt = LocalDateTime.now();
                 DateTimeFormatter f = DateTimeFormatter.ofPattern("dd-MM-yyyy  HH-mm");
                 String fdt = dt.format(f);
-                myWriter.write("\n"+fdt+"  --\n"+count+"\n");
-                
+                myWriter.write("\n" + fdt + "  --\n");
                 myWriter.close();
             }
         } catch (IOException e) {

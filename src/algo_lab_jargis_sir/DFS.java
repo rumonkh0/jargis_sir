@@ -75,5 +75,8 @@ public final class DFS {
         time++;
         f[u] = time;
     }
+    public static void main(String[] args) {
+        new DFS();
+    }
     
 }
