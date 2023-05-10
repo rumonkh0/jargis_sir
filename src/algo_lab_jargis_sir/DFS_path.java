@@ -19,7 +19,7 @@ public final class DFS_path {
     DFS_path() {
         try {
 //            File bfsfile = new File("bfs.txt");
-            File bfsfile = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "bfs.txt");
+            File bfsfile = new File("/home/student_user/Desktop/fs.txt");
             try (Scanner bfs_scanner = new Scanner(bfsfile)) {
                 node = bfs_scanner.nextInt();
                 edge = bfs_scanner.nextInt();
