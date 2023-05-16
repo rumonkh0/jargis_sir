@@ -67,7 +67,6 @@ public class SecondPrims {
                 if (graph[u][v] != 0 && mstset[v] == 0 && graph[u][v] < key[v]) {
                     parent[v] = u;
                     key[v] = graph[u][v];
-
                 }
             }
         }

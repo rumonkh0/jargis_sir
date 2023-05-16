@@ -6,8 +6,6 @@ package algo_lab_jargis_sir;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -20,7 +18,9 @@ public class SecondMst {
 
     SecondMst() {
         try {
-          File bfsfile = new File("/home/student_user/Desktop/prims.txt");
+            File bfsfile = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "prims.txt");
+
+//          File bfsfile = new File("/home/student_user/Desktop/prims.txt");
             try (Scanner bfs_scanner = new Scanner(bfsfile)) {
                 node = bfs_scanner.nextInt();
                 edge = bfs_scanner.nextInt();
@@ -103,7 +103,9 @@ public class SecondMst {
             if (flag == 0) {
                 g = minKey(sKey, mstset);
                 cTotal += sKey[g];
+                System.out.println(cTotal+"-");
             }
+//            System.out.println(cTotal);
             if (cTotal <= max && flag == 0) {
                 max = cTotal;
                 System.arraycopy(secondParent, 1, printParent, 1, node - 1);
@@ -112,7 +114,7 @@ public class SecondMst {
 
         printMST(parent, graph);
         System.out.println("\n\n");
-        System.out.println(cTotal);
+        System.out.println(max);
         printMST(printParent, graph);
     }
 
@@ -130,18 +132,6 @@ public class SecondMst {
     }
 
     static void printMST(int parent[], int graph[][]) {
-        try {
-            try (FileWriter myWriter = new FileWriter(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "primsans.txt", true)) {
-                myWriter.write("Edge \tWeight\n");
-                for (int i = 1; i < node; i++) {
-                    myWriter.write(parent[i] + " − " + i + "\t" + graph[i][parent[i]] + "\n");
-                }
-                myWriter.close();
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-        }
-
         System.out.println("Edge \tWeight");
         for (int i = 1; i < node; i++) {
             System.out.println(parent[i] + " − " + i + "\t" + graph[i][parent[i]]);
