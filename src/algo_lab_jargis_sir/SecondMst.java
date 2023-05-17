@@ -18,9 +18,9 @@ public class SecondMst {
 
     SecondMst() {
         try {
-            File bfsfile = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "prims.txt");
+//            File bfsfile = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "prims.txt");
 
-//          File bfsfile = new File("/home/student_user/Desktop/prims.txt");
+          File bfsfile = new File("/home/student_user/Desktop/prims.txt");
             try (Scanner bfs_scanner = new Scanner(bfsfile)) {
                 node = bfs_scanner.nextInt();
                 edge = bfs_scanner.nextInt();
@@ -73,7 +73,8 @@ public class SecondMst {
         System.out.println(total);
 
 //      calculate second mst
-        for (int omit = 1; omit < node; omit++) {
+        for (int omit = 0; omit < node; omit++) {
+            if(omit==root) continue;
             int flag = 0;
             cTotal = 0;
             for (int i = 0; i < node; i++) {
@@ -103,12 +104,13 @@ public class SecondMst {
             if (flag == 0) {
                 g = minKey(sKey, mstset);
                 cTotal += sKey[g];
-                System.out.println(cTotal+"-");
+//                System.out.println(cTotal+"-");
             }
 //            System.out.println(cTotal);
             if (cTotal <= max && flag == 0) {
+//                System.out.println("found" + cTotal);
                 max = cTotal;
-                System.arraycopy(secondParent, 1, printParent, 1, node - 1);
+                System.arraycopy(secondParent, 0, printParent, 0, node );
             }
         }
 
@@ -133,7 +135,8 @@ public class SecondMst {
 
     static void printMST(int parent[], int graph[][]) {
         System.out.println("Edge \tWeight");
-        for (int i = 1; i < node; i++) {
+        for (int i = 0; i < node; i++) {
+            if(parent[i]==-1) continue;
             System.out.println(parent[i] + " − " + i + "\t" + graph[i][parent[i]]);
         }
 

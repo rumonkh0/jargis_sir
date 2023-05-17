@@ -76,7 +76,10 @@ public class SecondPrims {
         System.out.println(total);
 
 //      calculate second mst
-        for (int omit = 1; omit < node; omit++) {
+        for (int omit = 0; omit < node; omit++) {
+            if (omit == root) {
+                continue;
+            }
             int flag = 0;
             cTotal = 0;
             for (int i = 0; i < node; i++) {
@@ -109,9 +112,9 @@ public class SecondPrims {
             }
             System.out.println(cTotal);
             if (cTotal <= max && flag == 0) {
-                System.out.println("found" + cTotal);
+//                System.out.println("found" + cTotal);
                 max = cTotal;
-                System.arraycopy(secondParent, 1, printParent, 1, node - 1);
+                System.arraycopy(secondParent, 0, printParent, 0, node);
             }
         }
 
@@ -139,7 +142,10 @@ public class SecondPrims {
         try {
             try (FileWriter myWriter = new FileWriter(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "primsans.txt", true)) {
                 myWriter.write("Edge \tWeight\n");
-                for (int i = 1; i < node; i++) {
+                for (int i = 0; i < node; i++) {
+                    if (parent[i] == -1) {
+                        continue;
+                    }
                     myWriter.write(parent[i] + " − " + i + "\t" + graph[i][parent[i]] + "\n");
                 }
                 myWriter.close();
@@ -149,7 +155,10 @@ public class SecondPrims {
         }
 
         System.out.println("Edge \tWeight");
-        for (int i = 1; i < node; i++) {
+        for (int i = 0; i < node; i++) {
+            if (parent[i] == -1) {
+                continue;
+            }
             System.out.println(parent[i] + " − " + i + "\t" + graph[i][parent[i]]);
         }
 
