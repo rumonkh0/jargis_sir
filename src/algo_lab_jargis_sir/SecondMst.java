@@ -103,7 +103,7 @@ public class SecondMst {
             if (flag == 0) {
                 g = minKey(sKey, mstset);
                 cTotal += sKey[g];
-                System.out.println(cTotal+"-");
+//                System.out.println(cTotal+"-");
             }
 //            System.out.println(cTotal);
             if (cTotal <= max && flag == 0) {
