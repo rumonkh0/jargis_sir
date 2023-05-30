@@ -18,9 +18,9 @@ public class SecondMst {
 
     SecondMst() {
         try {
-//            File bfsfile = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "prims.txt");
+            File bfsfile = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "prims.txt");
 
-          File bfsfile = new File("/home/student_user/Desktop/prims.txt");
+//          File bfsfile = new File("/home/student_user/Desktop/prims.txt");
             try (Scanner bfs_scanner = new Scanner(bfsfile)) {
                 node = bfs_scanner.nextInt();
                 edge = bfs_scanner.nextInt();
