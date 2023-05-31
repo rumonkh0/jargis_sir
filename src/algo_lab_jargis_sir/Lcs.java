@@ -10,14 +10,11 @@ import java.util.Scanner;
  *
  * @author student_user
  */
-class Dp {
-
-    Dp() {
-
-    }
-}
-
 public class Lcs {
+
+    static void print() {
+        System.out.println("here is output");
+    }
 
     static int max(int a, int b) {
         if (a > b) {
@@ -55,6 +52,8 @@ public class Lcs {
                 }
             }
         }
-        System.out.println("the length is : "+ lcs[m][n]);
+
+        System.out.println("the length is : " + lcs[m][n]);
+        print();
     }
 }
