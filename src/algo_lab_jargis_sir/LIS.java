@@ -10,8 +10,6 @@ import java.util.Scanner;
  *
  * @author rumon
  */
-
-
 //10 9 2 5 3 7 11 8 10 13 6
 public class LIS {
 
@@ -30,11 +28,11 @@ public class LIS {
     }
 
     static void printSequence(int max) {
-        if(max==0){
+        if (max == 0) {
             return;
         }
         printSequence(prev[max]);
-        System.out.print(arr[max]+" ");
+        System.out.print(arr[max] + " ");
     }
 
     public static void main(String[] args) {
@@ -50,16 +48,20 @@ public class LIS {
         length[0] = 0;
         prev[0] = -1;
 
-        for (int i = 1; i <= size; i++) {
+        for (int i = 0; i <= size; i++) {
+            int len = 0, previ=-1;
             for (int j = i - 1; j >= 0; j--) {
                 if (arr[j] < arr[i]) {
-                    length[i] = length[j] + 1;
-                    prev[i]=j;
-                    break;
+                    if(len<length[j]){
+                        len=length[j];
+                        previ=j;
+                    }
                 }
             }
+            length[i] = len + 1;
+            prev[i]=previ;
         }
-        
+
         System.out.println("Here is the sequence: ");
         printSequence(findMax());
         System.out.println("");
