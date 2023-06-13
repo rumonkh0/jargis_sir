@@ -12,10 +12,6 @@ import java.util.Scanner;
  */
 public class Lcs {
 
-    static void print() {
-        System.out.println("here is output");
-    }
-
     static int max(int a, int b) {
         if (a > b) {
             return a;
@@ -28,7 +24,7 @@ public class Lcs {
         Scanner sc = new Scanner(System.in);
         String s1 = sc.nextLine();
         String s2 = sc.nextLine();
-
+        
         int m = s1.length();
         int n = s2.length();
 
@@ -54,6 +50,5 @@ public class Lcs {
         }
 
         System.out.println("the length is : " + lcs[m][n]);
-        print();
     }
 }
