@@ -16,10 +16,10 @@ import java.util.Scanner;
  */
 public final class UVa439 {
 
-    int dim, graph[][], color[][], count = 0, image = 0;
-    String s="";
+    static int dim, graph[][], color[][], count = 0, image = 0;
+    static String s = "";
 
-    void input(Scanner bfs_scanner) {
+    static void input(Scanner bfs_scanner) {
         dim = Integer.parseInt(bfs_scanner.nextLine());
         graph = new int[dim][dim];
         color = new int[dim][dim];
@@ -31,10 +31,8 @@ public final class UVa439 {
             }
         }
     }
-    
-    
 
-    void DFS_travarse(int i, int j) {
+    static void DFS_travarse(int i, int j) {
 
         //check if the pixel not out of bound and travarse
         if ((i >= 0 && i < dim) && (j >= 0 && j < dim)) {
@@ -60,9 +58,10 @@ public final class UVa439 {
 
     }
 
-    public UVa439() {
+    public static void main(String[] args) {
         try {
-            File bfsfile = new File(System.getProperty("user.home") + File.separator + "Documents" + File.separator + "uva439.txt");
+//            File bfsfile = new File(System.getProperty("user.home") + File.separator + "Documents" + File.separator + "uva439.txt");
+            File bfsfile = new File("input.txt");
             try (Scanner bfs_scanner = new Scanner(bfsfile)) {
                 while (bfs_scanner.hasNextLine()) {
                     // input a portion of inputs
@@ -76,7 +75,7 @@ public final class UVa439 {
                         }
                     }
                     image++;
-                    s=s+"Image number " + image + " contains " + count + " war eagles.\n";
+                    s = s + "Image number " + image + " contains " + count + " war eagles.\n";
 //                    System.out.println("Image number " + image + " contains " + count + " war eagles.");
                     count = 0;
                 }
@@ -86,11 +85,10 @@ public final class UVa439 {
             System.out.println("\"uva439.txt\" file not found in your Desktop forder");
             System.exit(0);
         }
-        
-        
+
         //output file as a tex file
         try {
-            try (FileWriter myWriter = new FileWriter(System.getProperty("user.home") + File.separator + "Documents" + File.separator + "ans.txt")) {
+            try (FileWriter myWriter = new FileWriter("output.txt")) {
                 myWriter.write(s);
                 myWriter.close();
             }
@@ -98,5 +96,4 @@ public final class UVa439 {
             System.out.println("An error occurred with file writing.");
         }
     }
-
 }
