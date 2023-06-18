@@ -11,9 +11,8 @@ package algo_lab_jargis_sir;
 public class Jargis {
 
     public static void main(String[] args) {
-//        new BFS();
-//          new Quicksort();
-        new SecondPrims();
+
+        new UVa439();
     }
 
 }
